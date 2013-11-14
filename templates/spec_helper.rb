@@ -10,10 +10,18 @@ require 'webmock/rspec'
 
 Dir[Rails.root.join('spec/support/**/*.rb')].each { |file| require file }
 
+module GabeLovesSuspenders
+  def blendersuspenders(*args, &block)
+    scenario(*args, &block)
+  end
+end
+
 RSpec.configure do |config|
   config.expect_with :rspec do |c|
     c.syntax = :expect
   end
+
+  config.include GabeLovesSuspenders
 
   config.fail_fast = true
   config.infer_base_class_for_anonymous_controllers = false
